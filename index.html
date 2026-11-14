@@ -312,7 +312,6 @@ canvas:focus-visible { outline: 3px solid var(--gold); outline-offset: 6px; }
 
   // ---- Static cabinet (drawn once): a pearl-white swan cabinet, two-player ----
   const TOP = 36; // headroom for the swan topper
-  const SWAN_X = 48;
   cv.height = H + TOP;
   ctx.imageSmoothingEnabled = false;
   const SX = 32, SY = 34, SW = 76, SH = 70;
@@ -324,8 +323,7 @@ canvas:focus-visible { outline: 3px solid var(--gold); outline-offset: 6px; }
 
   // top cap + swan topper wearing a little crown
   const SWAN = [
-    "...c.c.c............",
-    "...ccccc............",
+    "....www.............",
     "...wwwww............",
     "bbkwwwwwl...........",
     "bbkwwwwl............",
@@ -335,20 +333,47 @@ canvas:focus-visible { outline: 3px solid var(--gold); outline-offset: 6px; }
     "....www.............",
     "....www.......ww....",
     "....www.....wwwl....",
-    "....wwwwwwwwwwll....",
-    "...wwwwwwwwwwwwwl...",
-    "...wwwwwwllwwwwwl...",
-    "...wwwwwwwwlllwwl...",
-    "....wwwwwwwwwwwwl...",
-    ".....llllllllllll..."
+    "..wwwwwwwwwwwwll....",
+    ".wwwwwwwwwwwwwwwl...",
+    ".wwwwwwwwllwwwwwl...",
+    ".wwwwwwwwwwlllwwl...",
+    "..wwwwwwwwwwwwwwl...",
+    "...llllllllllllll..."
   ];
   R(b, 11, 3, 118, 5, "#bccfee"); R(b, 11, 3, 118, 1, "#ffffff"); R(b, 11, 7, 118, 1, "#7f9bd2");
   // drawn at 2x so the swan reads from across the room
   const swanTmp = document.createElement("canvas");
-  swanTmp.width = 22; swanTmp.height = 19;
-  sprite(swanTmp.getContext("2d"), SWAN, 1, 1, { w: "#ffffff", l: "#bfd0ef", b: "#ff9a5c", k: "#1a1530", c: "#f3d98b" }, C.ink);
+  swanTmp.width = 22; swanTmp.height = 18;
+  const swanPal = { w: "#ffffff", l: "#bfd0ef", b: "#ff9a5c", k: "#1a1530" };
+  sprite(swanTmp.getContext("2d"), SWAN, 1, 1, swanPal, C.ink);
+  const swanFlip = document.createElement("canvas");
+  swanFlip.width = 22; swanFlip.height = 18;
+  sprite(swanFlip.getContext("2d"), SWAN, 1, 1, swanPal, C.ink, true);
   b.imageSmoothingEnabled = false;
-  b.drawImage(swanTmp, SWAN_X, 3 - 38, 44, 38);
+  // a smaller, daintier swan for the pair
+  const SWAN_SM = [
+    "....www..........",
+    "...wwwww.........",
+    "bbkwwwwwl........",
+    "bbkwwwwl.........",
+    "....wwww.........",
+    ".....www.........",
+    "....www..........",
+    "....www......ww..",
+    "....www....wwwl..",
+    "..wwwwwwwwwwwll..",
+    ".wwwwwwwwwwwwwwl.",
+    ".wwwwwwwwllwwwwl.",
+    ".wwwwwwwwwlllwwl.",
+    "..wwwwwwwwwwwwwl.",
+    "...lllllllllllll."
+  ];
+  const swanSm = document.createElement("canvas");
+  swanSm.width = 19; swanSm.height = 17;
+  sprite(swanSm.getContext("2d"), SWAN_SM, 1, 1, swanPal, C.ink);
+  // two swans facing each other, beak to beak
+  b.drawImage(swanFlip, 29, 3 - 36, 44, 36);
+  b.drawImage(swanSm, 70, 3 - 34, 38, 34);
   // marquee housing + backlit panel
   R(b, 14, 8, 112, 19, C.dark);
   const MQ = ["#8fb0f2", "#98b8f4", "#a2c0f6", "#aec8f8", "#acc3fa", "#a6cffc", "#a9d8fd", "#b4e0fe", "#c2e7ff", "#d0edff", "#ddf2ff", "#e9f6ff", "#f3faff"];
@@ -465,11 +490,6 @@ canvas:focus-visible { outline: 3px solid var(--gold); outline-offset: 6px; }
   function frame() {
     ctx.clearRect(0, 0, W, H + TOP);
     ctx.drawImage(base, 0, 0);
-    // crown glint on the swan
-    if (tick % 16 < 3) {
-      const r = (tick % 16) + 2, gx = SWAN_X + 12, gy = TOP - 35 + 2;
-      P(ctx, gx, gy - r + 1, "#ffffff"); P(ctx, gx - r, gy + 1, "#ffffff"); P(ctx, gx + r, gy + 1, "#ffffff");
-    }
     ctx.save();
     ctx.translate(0, TOP);
 
