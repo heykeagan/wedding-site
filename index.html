@@ -1,0 +1,647 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Ethan &amp; Keagan's engagement party. Sunday, December 27, 2026, 10am to 12pm at Asheville Retrocade. Brunch will be served!">
+<meta property="og:title" content="You're invited! Ethan &amp; Keagan's engagement party">
+<meta property="og:description" content="Sun 12.27.2026 · 10am to 12pm · Asheville Retrocade · Brunch will be served!">
+<meta property="og:url" content="https://ethanloveskeagan.com/">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#111a48">
+<style>
+:root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+body { margin: 0; -webkit-text-size-adjust: 100%; }
+</style>
+<title>Retrocade Engagement Party</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
+<style>
+/* Layout: one arcade cabinet standing on neon carpet, the party details printed beneath it like a high-score readout. Single dark arcade look by design. */
+:root {
+  /* Page palette pulled from the screen: dusk-sky navy and periwinkle, green-roof sage, moon white */
+  --bg: #111a48;
+  --ink: #f4f2ff;
+  --mint: #8cc7a6;
+  --gold: #c4d4f7;
+  --cyan: #8fa8e6;
+  --shadow: #0b1238;
+  --pixel: "Press Start 2P", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  color-scheme: dark;
+}
+html, body { min-height: 100%; }
+body {
+  background-color: var(--bg);
+  background-size: auto, 120px 120px;
+  image-rendering: pixelated;
+  color: var(--ink);
+  font-family: var(--pixel);
+}
+main {
+  min-height: 100vh;
+  min-height: calc(100dvh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(12px, 3vh, 28px);
+  padding-block: clamp(4px, 1vh, 12px) clamp(24px, 6vh, 64px);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.cab {
+  position: relative;
+  max-width: 100%;
+  filter: drop-shadow(0 0 28px rgba(122, 140, 210, .4));
+}
+canvas {
+  display: block;
+  max-width: 100%;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  cursor: pointer;
+}
+canvas:focus-visible { outline: 3px solid var(--gold); outline-offset: 6px; }
+.crt {
+  position: absolute;
+  left: calc(32 / 140 * 100%);
+  top: calc(70 / 228 * 100%);
+  width: calc(76 / 140 * 100%);
+  height: calc(70 / 228 * 100%);
+  pointer-events: none;
+  border-radius: 4%;
+  background:
+    repeating-linear-gradient(to bottom, rgba(0, 0, 0, .24) 0 1px, transparent 1px 3px),
+    radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, .5));
+}
+.info {
+  display: grid;
+  justify-items: center;
+  gap: clamp(8px, 1.8vh, 16px);
+  text-align: center;
+  line-height: 1.5;
+}
+.info p { margin: 0; }
+/* lit marquee sign, matching the cabinet's own marquee */
+.sign {
+  position: relative;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 11px;
+  margin-bottom: 6px;
+  background: #1f3266;
+  box-shadow: 0 0 0 3px #26408f, 0 0 26px rgba(143, 176, 242, .45);
+}
+.panel {
+  display: grid;
+  gap: 8px;
+  justify-items: center;
+  padding: 10px clamp(12px, 3.4vw, 20px) 12px;
+  background: linear-gradient(to bottom, #8fb0f2, #a2c0f6 30%, #c2e7ff 65%, #f3faff);
+}
+.bulb {
+  position: absolute;
+  width: 5px; height: 5px;
+  margin: -2px 0 0 -2px;
+  background: #5a74b0;
+  animation: chase .9s steps(1) infinite;
+}
+.bulb.b1 { animation-delay: -.3s; }
+.bulb.b2 { animation-delay: -.6s; }
+@keyframes chase {
+  0%, 66% { background: #ffffff; box-shadow: 0 0 6px 1px #bfe3ff; }
+  67%, 100% { background: #5a74b0; box-shadow: none; }
+}
+@media (prefers-reduced-motion: reduce) { .bulb { animation: none; background: #ffffff; } }
+.what { color: #1f3266; font-size: clamp(9px, 2.6vw, 12px); letter-spacing: .1em; }
+.names {
+  color: #ffffff;
+  font-size: clamp(14px, 4.2vw, 21px);
+  text-shadow: 2px 0 0 #26408f, -2px 0 0 #26408f, 0 2px 0 #26408f, 0 -2px 0 #26408f, 3px 3px 0 #26408f;
+}
+.when { color: var(--gold); font-size: clamp(14px, 4.4vw, 22px); text-shadow: 3px 3px 0 var(--shadow); }
+.extra { color: var(--mint); font-size: clamp(10px, 3vw, 13px); letter-spacing: .1em; text-shadow: 2px 2px 0 var(--shadow); }
+.time { font-size: clamp(12px, 3.6vw, 17px); text-shadow: 2px 2px 0 var(--shadow); }
+.where { color: var(--cyan); font-size: clamp(11px, 3.4vw, 16px); letter-spacing: .04em; text-shadow: 2px 2px 0 var(--shadow); }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+</style>
+</head>
+<body>
+
+
+<main>
+  <h1 class="sr">You're invited!</h1>
+  <div class="cab" id="cabWrap">
+    <canvas id="cab" tabindex="0" role="img"
+      aria-label="Pixel-art arcade cabinet. The marquee reads You're Invited! On the screen, Ethan and Keagan at a stone overlook at dusk with a château behind them: one kneels holding up a ring box while the other covers their mouth in surprise, under a pixel heart."></canvas>
+    <div class="crt" aria-hidden="true"></div>
+  </div>
+  <section class="info" id="info">
+    <div class="sign" id="sign">
+      <div class="panel">
+        <p class="what">ENGAGEMENT PARTY</p>
+        <p class="names">ETHAN &amp; KEAGAN</p>
+      </div>
+    </div>
+    <p class="when">SUN 12.27.2026</p>
+    <p class="time">10AM - 12PM</p>
+    <p class="where">ASHEVILLE RETROCADE</p>
+    <p class="extra">BRUNCH WILL BE SERVED!</p>
+  </section>
+</main>
+
+<script>
+(() => {
+  // ---- Cast: change these colors to match the two of you ----
+  const CAST = {
+    standing: { hair: "#8a4f2f", skin: "#f3cdb4", hands: "#e6b294", dress: "#f3dcc2", dots: "#c99a7c", heels: "#ffffff" },
+    kneeling: { hair: "#ecc96a", skin: "#f2c9ae", shirt: "#f6f3ec", pants: "#cfcdbf", socks: "#ffffff", shoes: "#9a5228", box: "#f7f3ea" }
+  };
+
+  const W = 140, H = 192;
+  const cv = document.getElementById("cab");
+  const ctx = cv.getContext("2d");
+  cv.width = W; cv.height = H;
+  ctx.imageSmoothingEnabled = false;
+
+  let seed = 1337;
+  const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+
+  const R = (c, x, y, w, h, col) => { c.fillStyle = col; c.fillRect(x, y, w, h); };
+  const P = (c, x, y, col) => { c.fillStyle = col; c.fillRect(Math.round(x), Math.round(y), 1, 1); };
+
+  // ---- 5x7 bitmap font for the marquee ----
+  const FONT = {
+    Y: ["10001","10001","01010","00100","00100","00100","00100"],
+    O: ["01110","10001","10001","10001","10001","10001","01110"],
+    U: ["10001","10001","10001","10001","10001","10001","01110"],
+    "'": ["1","1","0","0","0","0","0"],
+    R: ["11110","10001","10001","11110","10100","10010","10001"],
+    E: ["11111","10000","10000","11110","10000","10000","11111"],
+    " ": ["000","000","000","000","000","000","000"],
+    I: ["111","010","010","010","010","010","111"],
+    N: ["10001","11001","10101","10011","10001","10001","10001"],
+    V: ["10001","10001","10001","10001","10001","01010","00100"],
+    T: ["11111","00100","00100","00100","00100","00100","00100"],
+    D: ["11110","10001","10001","10001","10001","10001","11110"],
+    "!": ["1","1","1","1","1","0","1"],
+    A: ["01110","10001","10001","11111","10001","10001","10001"],
+    P: ["11110","10001","10001","11110","10000","10000","10000"],
+    L: ["10000","10000","10000","10000","10000","10000","11111"]
+  };
+  const MINI = {
+    T: ["111","010","010","010","010"],
+    A: ["010","101","111","101","101"],
+    P: ["110","101","110","100","100"],
+    O: ["010","101","101","101","010"],
+    L: ["100","100","100","100","111"],
+    Y: ["101","101","010","010","010"],
+    " ": ["00","00","00","00","00"]
+  };
+  const textW = s => [...s].reduce((a, ch) => a + FONT[ch][0].length + 1, -1);
+  function bitText(c, s, x, y, col, outline) {
+    const drawPass = (ox, oy, colr) => {
+      let cx = x;
+      for (const ch of s) {
+        const g = FONT[ch];
+        g.forEach((row, r) => [...row].forEach((b, k) => { if (b === "1") P(c, cx + k + ox, y + r + oy, colr); }));
+        cx += g[0].length + 1;
+      }
+    };
+    if (outline) {
+      for (const [ox, oy] of [[-1,0],[1,0],[0,-1],[0,1],[1,1],[2,2],[1,2],[2,1]]) drawPass(ox, oy, outline);
+    }
+    drawPass(0, 0, col);
+  }
+
+  // ---- Sprites ----
+  function sprite(c, rows, x, y, pal, outline, flip) {
+    const h = rows.length, w = Math.max(...rows.map(r => r.length));
+    const get = (k, r) => (r >= 0 && r < h && k >= 0 && k < w) ? (rows[r][flip ? w - 1 - k : k] || ".") : ".";
+    const on = (k, r) => get(k, r) !== ".";
+    if (outline) {
+      for (let r = -1; r <= h; r++) for (let k = -1; k <= w; k++) {
+        if (!on(k, r) && (on(k - 1, r) || on(k + 1, r) || on(k, r - 1) || on(k, r + 1))) P(c, x + k, y + r, outline);
+      }
+    }
+    for (let r = 0; r < h; r++) for (let k = 0; k < w; k++) {
+      const ch = get(k, r);
+      if (ch === ".") continue;
+      let col = pal[ch];
+      if (Array.isArray(col)) col = (k + r * 2) % 4 === 0 ? col[1] : col[0]; // polka dots
+      P(c, x + k, y + r, col);
+    }
+  }
+
+  // drawn facing left, flipped at draw time; hands over mouth, long polka-dot dress
+  const STANDING = [
+    "..hhhhhh..",
+    ".hhhhhhhhh",
+    ".hhhhhhhhh",
+    ".hssshhhhh",
+    ".skssshhhh",
+    ".ssbsshhhh",
+    "SSsssshhhh",
+    "SS.sshhhhh",
+    ".S.sddhhhh",
+    ".SSdddhhh.",
+    "..ddddddh.",
+    "..dddddd..",
+    "..dddddd..",
+    "..dddddd..",
+    ".ddddddd..",
+    ".dddddddd.",
+    ".dddddddd.",
+    "dddddddddd",
+    "dddddddddd",
+    ".dddddddd.",
+    "..ss..ss..",
+    ".ww..ww..."
+  ];
+  const KNEELING = [
+    ".....HHHHH......",
+    "....HHHHHHH.....",
+    "....HHHHHHHH....",
+    "....HHHHHsss....",
+    "....HHHssskss...",
+    "....HHHssssbs...",
+    ".....HHsssss....",
+    "........ss...d..",
+    "......jjjjj..g..",
+    ".....jjjjjjjxxx.",
+    "....jjjjjjjjjss.",
+    "....jjjjjjj.....",
+    "....jjjjjjj.....",
+    "....jjjjjjj.....",
+    "....pppppppppp..",
+    "....pppppppppp..",
+    "....ppp.....pp..",
+    "....ppp.....ww..",
+    "qpppppp....qqqq."
+  ];
+  const HEART_BIG = [
+    ".rr...rr.",
+    "rwrr.rrrr",
+    "rrrrrrrrr",
+    "rrrrrrrrr",
+    ".rrrrrrr.",
+    "..rrrrr..",
+    "...rrr...",
+    "....r...."
+  ];
+  const HEART_MID = [
+    ".rr.rr.",
+    "rwrrrrr",
+    "rrrrrrr",
+    ".rrrrr.",
+    "..rrr..",
+    "...r..."
+  ];
+  const HEART_SM = [".r.r.", "rrrrr", "rrrrr", ".rrr.", "..r.."];
+
+  const OUT = "#120a24";
+  const S1 = CAST.standing, K1 = CAST.kneeling;
+  const palS = { h: S1.hair, s: S1.skin, S: S1.hands, d: [S1.dress, S1.dots], w: S1.heels, k: OUT, b: "#ff9fb4" };
+  const palK = { H: K1.hair, s: K1.skin, j: K1.shirt, p: K1.pants, w: K1.socks, q: K1.shoes, k: OUT, b: "#f7a8a8", d: "#eafcff", g: "#ffd45c", x: K1.box };
+
+  // ---- Static cabinet (drawn once): a pearl-white swan cabinet, two-player ----
+  const TOP = 36; // headroom for the swan topper
+  const SWAN_X = 48;
+  cv.height = H + TOP;
+  ctx.imageSmoothingEnabled = false;
+  const SX = 32, SY = 34, SW = 76, SH = 70;
+  const base = document.createElement("canvas");
+  base.width = W; base.height = H + TOP;
+  const b = base.getContext("2d");
+  b.translate(0, TOP);
+  const C = { body: "#d3e0f7", hi: "#f3f7ff", sh: "#9fb4e0", dark: "#1f3266", trim: "#ffffff", bezel: "#101a33", bezelEdge: "#22305f", ink: "#26408f" };
+
+  // top cap + swan topper wearing a little crown
+  const SWAN = [
+    "...c.c.c............",
+    "...ccccc............",
+    "...wwwww............",
+    "bbkwwwwwl...........",
+    "bbkwwwwl............",
+    "....wwww............",
+    ".....www............",
+    ".....www............",
+    "....www.............",
+    "....www.......ww....",
+    "....www.....wwwl....",
+    "....wwwwwwwwwwll....",
+    "...wwwwwwwwwwwwwl...",
+    "...wwwwwwllwwwwwl...",
+    "...wwwwwwwwlllwwl...",
+    "....wwwwwwwwwwwwl...",
+    ".....llllllllllll..."
+  ];
+  R(b, 11, 3, 118, 5, "#bccfee"); R(b, 11, 3, 118, 1, "#ffffff"); R(b, 11, 7, 118, 1, "#7f9bd2");
+  // drawn at 2x so the swan reads from across the room
+  const swanTmp = document.createElement("canvas");
+  swanTmp.width = 22; swanTmp.height = 19;
+  sprite(swanTmp.getContext("2d"), SWAN, 1, 1, { w: "#ffffff", l: "#bfd0ef", b: "#ff9a5c", k: "#1a1530", c: "#f3d98b" }, C.ink);
+  b.imageSmoothingEnabled = false;
+  b.drawImage(swanTmp, SWAN_X, 3 - 38, 44, 38);
+  // marquee housing + backlit panel
+  R(b, 14, 8, 112, 19, C.dark);
+  const MQ = ["#8fb0f2", "#98b8f4", "#a2c0f6", "#aec8f8", "#acc3fa", "#a6cffc", "#a9d8fd", "#b4e0fe", "#c2e7ff", "#d0edff", "#ddf2ff", "#e9f6ff", "#f3faff"];
+  MQ.forEach((col, i) => R(b, 16, 11 + i, 108, 1, col));
+  bitText(b, "YOU'RE INVITED!", 16 + Math.floor((108 - textW("YOU'RE INVITED!")) / 2), 14, "#ffffff", C.ink);
+  // front body around the screen
+  R(b, 14, 27, 112, 86, C.body); R(b, 14, 27, 2, 86, C.hi); R(b, 124, 27, 2, 86, C.sh);
+  // bezel
+  R(b, 26, 30, 88, 79, C.bezel); R(b, 26, 30, 88, 1, C.bezelEdge); R(b, 26, 30, 1, 79, C.bezelEdge);
+  // control panel
+  R(b, 6, 113, 128, 9, "#b3c8ee"); R(b, 6, 113, 128, 1, "#ffffff");
+  R(b, 6, 122, 128, 8, "#7f9cd6"); R(b, 6, 122, 128, 1, "#e3edff");
+  R(b, 4, 113, 2, 17, "#ffffff"); R(b, 134, 113, 2, 17, "#ffffff");
+  // two players: joystick + three buttons each
+  const joystick = (x, ball) => {
+    R(b, x - 4, 117, 9, 2, C.dark); R(b, x, 112, 1, 5, "#eef0fa");
+    R(b, x - 1, 108, 3, 4, ball); R(b, x - 2, 109, 5, 2, ball); P(b, x - 1, 109, "#ffffff");
+  };
+  const button = (x, y, col) => {
+    R(b, x + 1, y, 4, 1, col); R(b, x, y + 1, 6, 2, col); R(b, x + 1, y + 3, 4, 1, "#4a68ae");
+    P(b, x + 1, y + 1, "#ffffff");
+  };
+  joystick(20, "#f7a8d8");
+  [["#f7a8d8", 30], ["#ffffff", 38], ["#a9c6ff", 46]].forEach(([col, x], i) => button(x, 115 + (i % 2), col));
+  joystick(94, "#9fd4ff");
+  [["#9fd4ff", 104], ["#ffffff", 112], ["#a9c6ff", 120]].forEach(([col, x], i) => button(x, 115 + (i % 2), col));
+  // 1P / 2P start buttons in the middle
+  R(b, 63, 116, 4, 2, "#f7a8d8"); R(b, 73, 116, 4, 2, "#9fd4ff");
+  R(b, 63, 118, 4, 1, "#4a68ae"); R(b, 73, 118, 4, 1, "#4a68ae");
+  // lower body
+  R(b, 14, 130, 112, 52, C.body); R(b, 14, 130, 2, 52, C.hi); R(b, 124, 130, 2, 52, C.sh);
+  // coin door
+  R(b, 52, 140, 36, 32, "#7f9cd6"); R(b, 52, 140, 36, 1, "#eef4ff"); R(b, 52, 140, 1, 32, "#eef4ff");
+  for (const x of [60, 76]) {
+    R(b, x - 1, 145, 6, 11, "#2a4280");
+    R(b, x, 146, 4, 9, "#7fd0ff"); R(b, x + 1, 147, 2, 7, "#e6f7ff"); R(b, x + 1, 147, 1, 7, "#16224a");
+  }
+  R(b, 62, 162, 16, 5, C.dark); R(b, 63, 163, 14, 1, "#4a68ae");
+  // feather scallops along the base
+  for (let x = 16; x < 118; x += 6) {
+    R(b, x + 1, 171, 4, 1, "#ffffff"); R(b, x, 172, 6, 2, "#ffffff"); R(b, x, 174, 6, 1, "#bccdf0");
+    R(b, x + 4, 175, 4, 1, "#dde8fa"); R(b, x + 3, 176, 6, 2, "#dde8fa"); R(b, x + 3, 178, 6, 1, "#93ade6");
+  }
+  R(b, 14, 171, 2, 8, C.body); R(b, 124, 171, 2, 8, C.body);
+  // kick plate + floor shadow
+  R(b, 14, 182, 112, 6, "#4a68ae"); R(b, 8, 188, 124, 3, "#07081e");
+
+  // ---- Static screen background: dusk over the château, stone wall overlook ----
+  const scr = document.createElement("canvas");
+  scr.width = SW; scr.height = SH;
+  const s = scr.getContext("2d");
+  const SKY = ["#1d2a6b", "#2b3a8a", "#3f4ea3", "#5a64b8", "#7a7cc8", "#9b97d6", "#bdb3e3", "#d9cff0"];
+  const BAYER = [[0.125, 0.625], [0.875, 0.375]];
+  for (let y = 0; y < 47; y++) {
+    const t = y / 46 * (SKY.length - 1), i = Math.floor(t), f = t - i;
+    for (let x = 0; x < SW; x++) P(s, x, y, f > BAYER[y & 1][x & 1] ? SKY[Math.min(i + 1, SKY.length - 1)] : SKY[i]);
+  }
+  const tri = (cx, top, bot, half, col) => {
+    for (let y = top; y <= bot; y++) { const hw = Math.round((y - top) / (bot - top || 1) * half); R(s, cx - hw, y, hw * 2 + 1, 1, col); }
+  };
+  const STONE = "#8e8796", GREEN = "#4d7a68", SLATE = "#3d4058", BRICK = "#a35d45", PALE = "#bdb3bb", WIN = "#3a2a3a";
+  // green-roofed wing
+  R(s, 4, 32, 32, 15, STONE);
+  tri(12, 20, 32, 8, GREEN); tri(26, 14, 32, 9, GREEN); R(s, 4, 30, 32, 3, GREEN);
+  R(s, 26, 9, 1, 5, "#2f3b44"); R(s, 18, 21, 2, 6, "#55605e");
+  for (let x = 7; x < 35; x += 4) { P(s, x, 36, WIN); P(s, x, 41, WIN); }
+  P(s, 26, 24, "#e6dccf"); P(s, 12, 27, "#e6dccf");
+  // main tower: brick body, stone corners, steep slate roof
+  R(s, 48, 22, 19, 25, BRICK); R(s, 48, 22, 2, 25, PALE); R(s, 65, 22, 2, 25, PALE);
+  for (let y = 25; y < 46; y += 3) for (let x = 51; x < 64; x += 3) P(s, x, y, WIN);
+  tri(57, 5, 22, 10, SLATE);
+  [[57, 10], [54, 15], [60, 15], [51, 19], [57, 19], [63, 19]].forEach(([x, y]) => P(s, x, y, "#d9d2c6"));
+  R(s, 57, 0, 1, 5, "#2a2c3e");
+  R(s, 45, 22, 3, 25, PALE); tri(46, 13, 22, 2, SLATE); P(s, 46, 11, "#2a2c3e"); P(s, 46, 12, "#2a2c3e");
+  R(s, 67, 22, 3, 25, PALE); tri(68, 13, 22, 2, SLATE); P(s, 68, 11, "#2a2c3e"); P(s, 68, 12, "#2a2c3e");
+  // small green turret, right
+  R(s, 69, 37, 6, 10, STONE); tri(72, 29, 37, 4, GREEN);
+  // trees
+  const blob = (cx, cy, r) => {
+    for (let dy = -r; dy <= r; dy++) for (let dx = -r; dx <= r; dx++) if (dx * dx + dy * dy <= r * r + 1)
+      P(s, cx + dx, cy + dy, (dx + dy < -r / 2) ? "#5f8f4c" : "#3c6a3c");
+  };
+  blob(2, 38, 6); blob(8, 44, 5); blob(74, 41, 5); blob(70, 46, 4);
+  // railing
+  R(s, 0, 42, SW, 1, "#1a1626"); R(s, 0, 43, SW, 1, "#2c2638");
+  // stone wall
+  R(s, 0, 46, SW, 1, "#b0aab8"); R(s, 0, 47, SW, 12, "#7c7684");
+  for (const y of [50, 54]) R(s, 0, y, SW, 1, "#635d6e");
+  for (let x = 3, n = 0; x < SW; x += 8, n++) { R(s, x, 47, 1, 3, "#635d6e"); R(s, x + 4, 51, 1, 3, "#635d6e"); R(s, x, 55, 1, 4, "#635d6e"); }
+  // stone post between you two
+  R(s, 24, 39, 5, 8, "#8a8492"); R(s, 25, 38, 3, 1, "#b0aab8"); R(s, 24, 39, 5, 1, "#b0aab8");
+  // sidewalk + road
+  R(s, 0, 59, SW, 6, "#6e687c"); R(s, 0, 59, SW, 1, "#a8a2b6");
+  R(s, 0, 65, SW, 5, "#3a3448"); R(s, 0, 65, SW, 1, "#2a2438");
+
+  const STARS = Array.from({ length: 14 }, () => ({ x: Math.floor(rnd() * SW), y: Math.floor(rnd() * 12), ph: rnd() * 6.28, sp: .15 + rnd() * .35, big: rnd() < .2 }))
+    .filter(st => Math.abs(st.x - 57) > 3);
+
+  // ---- Animation ----
+  const DY = 8; // scene sits below the TAP TO PLAY strip
+  const ringX = SX + 29 + 2, ringY = SY + DY + 40 + 7;
+  let tick = 0;
+  const parts = [];
+  const HEART_COLS = ["#ffd6ee", "#f7a8d8", "#d7a6f0", "#a99be6", "#7c7ccc"];
+  function spawn(n, burst) {
+    for (let i = 0; i < n; i++) parts.push({
+      x: ringX - 2, y: ringY - 6,
+      vx: burst ? (rnd() - .5) * 1.6 : (rnd() - .5) * .3,
+      vy: burst ? -.6 - rnd() * 1.1 : -.55,
+      age: 0, life: burst ? 26 + rnd() * 14 : 38
+    });
+  }
+
+  function frame() {
+    ctx.clearRect(0, 0, W, H + TOP);
+    ctx.drawImage(base, 0, 0);
+    // crown glint on the swan
+    if (tick % 16 < 3) {
+      const r = (tick % 16) + 2, gx = SWAN_X + 12, gy = TOP - 35 + 2;
+      P(ctx, gx, gy - r + 1, "#ffffff"); P(ctx, gx - r, gy + 1, "#ffffff"); P(ctx, gx + r, gy + 1, "#ffffff");
+    }
+    ctx.save();
+    ctx.translate(0, TOP);
+
+    // marquee chase bulbs
+    for (let x = 16, n = 0; x < 124; x += 3, n++) {
+      const lit = (n + tick) % 3 !== 0;
+      P(ctx, x, 9, lit ? "#ffffff" : "#5a74b0");
+      P(ctx, x + 1, 25, (n + tick + 1) % 3 !== 0 ? "#ffffff" : "#5a74b0");
+    }
+    // coin slot glow pulse
+    if (tick % 10 < 5) { R(ctx, 61, 147, 1, 7, "#ffffff"); R(ctx, 77, 147, 1, 7, "#ffffff"); }
+
+    // screen
+    ctx.save();
+    ctx.beginPath(); ctx.rect(SX, SY, SW, SH); ctx.clip();
+    ctx.fillStyle = SKY[0]; ctx.fillRect(SX, SY, SW, DY);
+    ctx.drawImage(scr, SX, SY + DY);
+    for (const st of STARS) {
+      const v = Math.sin(tick * st.sp + st.ph);
+      if (v < -.3) continue;
+      const col = v > .55 ? "#ffffff" : "#a796e0";
+      P(ctx, SX + st.x, SY + DY + st.y, col);
+      if (st.big && v > .8) { ["#6f5fb8"].forEach(c2 => { P(ctx, SX + st.x - 1, SY + DY + st.y, c2); P(ctx, SX + st.x + 1, SY + DY + st.y, c2); P(ctx, SX + st.x, SY + DY + st.y - 1, c2); P(ctx, SX + st.x, SY + DY + st.y + 1, c2); }); }
+    }
+
+    // big beating heart
+    const beat = tick % 8 < 2;
+    if (beat) sprite(ctx, HEART_BIG, SX + 23, SY + DY + 15, { r: "#f78fc9", w: "#ffe3f3" }, OUT);
+    else sprite(ctx, HEART_MID, SX + 24, SY + DY + 16, { r: "#f78fc9", w: "#ffe3f3" }, OUT);
+
+    // the two of you
+    const hop = (tick % 12 === 3 || tick % 12 === 4) ? 1 : 0;
+    sprite(ctx, STANDING, SX + 13, SY + DY + 37 - hop, palS, OUT, true);
+    sprite(ctx, KNEELING, SX + 29, SY + DY + 40, palK, OUT, true);
+
+    // ring sparkle
+    const sp = tick % 6;
+    if (sp < 3) {
+      const r = sp + 1;
+      P(ctx, ringX, ringY - r - 1, "#ffffff"); P(ctx, ringX, ringY + r - 1, "#ffffff");
+      P(ctx, ringX - r, ringY - 1, "#ffffff"); P(ctx, ringX + r, ringY - 1, "#ffffff");
+    }
+
+    // floating hearts
+    for (const p of parts) {
+      const f = p.age / p.life;
+      const col = HEART_COLS[Math.min(HEART_COLS.length - 1, Math.floor(f * HEART_COLS.length))];
+      sprite(ctx, HEART_SM, p.x + Math.round(Math.sin(p.age * .45)), p.y, { r: col });
+    }
+
+    // "TAP TO PLAY" crawling along the top edge of the screen in a compact 3x5 phosphor font
+    {
+      const msg = "TAP TO PLAY";
+      const tw = [...msg].reduce((a, ch) => a + MINI[ch][0].length + 1, -1), span = SW + tw + 12;
+      const tx = reduce ? SX + Math.floor((SW - tw) / 2) : SX + SW - ((tick * 2 + Math.floor((SW + tw) / 2)) % span);
+      const ty = SY + 1;
+      ctx.fillStyle = "rgba(8,12,40,.45)"; ctx.fillRect(SX, SY, SW, 7);
+      const pass = (col, offs) => offs.forEach(([ox, oy]) => {
+        let cx = tx;
+        ctx.fillStyle = col;
+        for (const ch of msg) {
+          const g = MINI[ch];
+          g.forEach((row, r) => [...row].forEach((bit, k) => { if (bit === "1") ctx.fillRect(cx + k + ox, ty + r + oy, 1, 1); }));
+          cx += g[0].length + 1;
+        }
+      });
+      pass("rgba(159,220,255,.2)", [[-1,0],[1,0],[0,-1],[0,1]]);
+      pass(tick % 14 === 0 ? "#cfeeff" : "#ffffff", [[0,0]]);
+    }
+
+    // glass glare
+    ctx.fillStyle = "rgba(255,255,255,.07)";
+    for (let i = 0; i < 16; i++) ctx.fillRect(SX + 58 - i, SY + 1 + i, 3, 1);
+    ctx.fillStyle = "rgba(255,255,255,.04)";
+    for (let i = 0; i < 10; i++) ctx.fillRect(SX + 66 - i, SY + 1 + i, 1, 1);
+    ctx.restore();
+
+    // rounded screen corners
+    const cc = C.bezel;
+    [[SX, SY], [SX + 1, SY], [SX, SY + 1], [SX + SW - 1, SY], [SX + SW - 2, SY], [SX + SW - 1, SY + 1],
+     [SX, SY + SH - 1], [SX + 1, SY + SH - 1], [SX, SY + SH - 2], [SX + SW - 1, SY + SH - 1], [SX + SW - 2, SY + SH - 1], [SX + SW - 1, SY + SH - 2]]
+      .forEach(([x, y]) => P(ctx, x, y, cc));
+    ctx.restore();
+  }
+
+  function step() {
+    tick++;
+    if (tick % 20 === 0) spawn(1, false);
+    for (const p of parts) { p.x += p.vx; p.y += p.vy; p.vx *= .97; p.age++; }
+    for (let i = parts.length - 1; i >= 0; i--) if (parts[i].age >= parts[i].life) parts.splice(i, 1);
+    frame();
+  }
+
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduce) {
+    spawn(1, false); parts[0].age = 10; parts[0].y -= 6;
+    frame();
+  } else {
+    let last = 0;
+    const loop = now => {
+      if (now - last > 100) { last = now; step(); }
+      requestAnimationFrame(loop);
+    };
+    frame();
+    requestAnimationFrame(loop);
+  }
+
+  const burst = () => { spawn(9, true); if (reduce) frame(); };
+  cv.addEventListener("click", burst);
+  cv.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); burst(); } });
+
+  // ---- Fit cabinet to the screen at a crisp pixel scale ----
+  const info = document.getElementById("info");
+  // Size the cabinet so the whole invitation fits on one screen without scrolling
+  const mainEl = document.querySelector("main");
+  function fit() {
+    const dpr = window.devicePixelRatio || 1;
+    const CH = H + TOP;
+    const px = v => parseFloat(v) || 0;
+    const ms = getComputedStyle(mainEl), rs = getComputedStyle(document.documentElement);
+    const other = px(ms.paddingTop) + px(ms.paddingBottom) + px(ms.rowGap) + info.offsetHeight
+      + px(rs.paddingTop) + px(rs.paddingBottom) + 4;
+    const availW = Math.min(window.innerWidth - 32, 620);
+    const availH = window.innerHeight - other;
+    let sc = Math.min(availW / W, availH / CH, 4.5);
+    sc = Math.max(1, Math.floor(sc * dpr)) / dpr;
+    cv.style.width = W * sc + "px";
+    cv.style.height = CH * sc + "px";
+  }
+  fit();
+  window.addEventListener("resize", fit);
+  if (window.visualViewport) window.visualViewport.addEventListener("resize", fit);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+
+  // ---- Chasing bulbs around the name sign ----
+  const sign = document.getElementById("sign");
+  function bulbs() {
+    sign.querySelectorAll(".bulb").forEach(n => n.remove());
+    const w = sign.offsetWidth, h = sign.offsetHeight, inset = 5.5, gap = 13;
+    const pts = [];
+    const nx = Math.max(2, Math.round((w - 2 * inset) / gap)), ny = Math.max(2, Math.round((h - 2 * inset) / gap));
+    for (let i = 0; i < nx; i++) pts.push([inset + i * (w - 2 * inset) / nx, inset]);
+    for (let i = 0; i < ny; i++) pts.push([w - inset, inset + i * (h - 2 * inset) / ny]);
+    for (let i = 0; i < nx; i++) pts.push([w - inset - i * (w - 2 * inset) / nx, h - inset]);
+    for (let i = 0; i < ny; i++) pts.push([inset, h - inset - i * (h - 2 * inset) / ny]);
+    pts.forEach(([x, y], i) => {
+      const d = document.createElement("span");
+      d.className = "bulb b" + (i % 3);
+      d.style.left = Math.round(x) + "px"; d.style.top = Math.round(y) + "px";
+      d.setAttribute("aria-hidden", "true");
+      sign.appendChild(d);
+    });
+  }
+  bulbs();
+  if (window.ResizeObserver) new ResizeObserver(bulbs).observe(sign);
+  else window.addEventListener("resize", bulbs);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(bulbs);
+
+  // ---- Arcade carpet ----
+  const tile = document.createElement("canvas");
+  tile.width = tile.height = 40;
+  const tc = tile.getContext("2d");
+  R(tc, 0, 0, 40, 40, "#111a48");
+  const NEON = ["#8cc7a6", "#7a8fd6", "#f4f2ff", "#5f9a7e"];
+  tc.globalAlpha = .3;
+  for (let i = 0; i < 16; i++) {
+    const col = NEON[i % 4], x = 2 + Math.floor(rnd() * 36), y = 2 + Math.floor(rnd() * 36);
+    if (i % 3 === 0) { R(tc, x, y - 1, 1, 3, col); R(tc, x - 1, y, 3, 1, col); }
+    else if (i % 3 === 1) { for (let k = 0; k < 4; k++) R(tc, x + k, y + (k % 2), 1, 1, col); }
+    else R(tc, x, y, 2, 2, col);
+  }
+  document.body.style.backgroundImage =
+    "radial-gradient(ellipse at 50% 38%, rgba(122,140,210,.22), rgba(17,26,72,.55) 55%, rgba(17,26,72,.85)), url(" + tile.toDataURL() + ")";
+})();
+</script>
+
+</body>
+</html>
