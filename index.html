@@ -8,7 +8,7 @@
 <meta property="og:description" content="Sun 12.27.2026 · 10am to 12pm · Asheville Retrocade · Brunch will be served!">
 <meta property="og:url" content="https://ethanloveskeagan.com/">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#111a48">
+<meta name="theme-color" content="#0b1126">
 <style>
 :root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
 body { margin: 0; -webkit-text-size-adjust: 100%; }
@@ -22,12 +22,12 @@ body { margin: 0; -webkit-text-size-adjust: 100%; }
 /* Layout: one arcade cabinet standing on neon carpet, the party details printed beneath it like a high-score readout. Single dark arcade look by design. */
 :root {
   /* Page palette pulled from the screen: dusk-sky navy and periwinkle, green-roof sage, moon white */
-  --bg: #111a48;
-  --ink: #f4f2ff;
-  --mint: #8cc7a6;
-  --gold: #c4d4f7;
-  --cyan: #8fa8e6;
-  --shadow: #0b1238;
+  --bg: #0b1126;
+  --ink: #eceef3;
+  --mint: #c2c8d4;
+  --gold: #e9edf5;
+  --cyan: #bac8e0;
+  --shadow: #282a3a;
   --pixel: "Press Start 2P", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   color-scheme: dark;
 }
@@ -55,7 +55,7 @@ main {
 .cab {
   position: relative;
   max-width: 100%;
-  filter: drop-shadow(0 0 28px rgba(122, 140, 210, .4));
+  filter: drop-shadow(0 0 28px rgba(159, 180, 224, .4));
 }
 canvas {
   display: block;
@@ -92,35 +92,35 @@ canvas:focus-visible { outline: 3px solid var(--gold); outline-offset: 6px; }
   box-sizing: border-box;
   padding: 11px;
   margin-bottom: 6px;
-  background: #1f3266;
-  box-shadow: 0 0 0 3px #26408f, 0 0 26px rgba(143, 176, 242, .45);
+  background: #262a36;
+  box-shadow: 0 0 0 3px #e2e7f0, 0 0 0 5px #a8b1c4, 0 0 28px rgba(215, 225, 242, .32);
 }
 .panel {
   display: grid;
   gap: 8px;
   justify-items: center;
   padding: 10px clamp(12px, 3.4vw, 20px) 12px;
-  background: linear-gradient(to bottom, #8fb0f2, #a2c0f6 30%, #c2e7ff 65%, #f3faff);
+  background: linear-gradient(to bottom, #dde3ee, #e8ecf3 35%, #f2f4f8 70%, #fcfdff);
 }
 .bulb {
   position: absolute;
   width: 5px; height: 5px;
   margin: -2px 0 0 -2px;
-  background: #5a74b0;
+  background: #515a6c;
   animation: chase .9s steps(1) infinite;
 }
 .bulb.b1 { animation-delay: -.3s; }
 .bulb.b2 { animation-delay: -.6s; }
 @keyframes chase {
-  0%, 66% { background: #ffffff; box-shadow: 0 0 6px 1px #bfe3ff; }
-  67%, 100% { background: #5a74b0; box-shadow: none; }
+  0%, 66% { background: #fbfcff; box-shadow: 0 0 6px 1px #dde5f2; }
+  67%, 100% { background: #515a6c; box-shadow: none; }
 }
-@media (prefers-reduced-motion: reduce) { .bulb { animation: none; background: #ffffff; } }
-.what { color: #1f3266; font-size: clamp(9px, 2.6vw, 12px); letter-spacing: .1em; }
+@media (prefers-reduced-motion: reduce) { .bulb { animation: none; background: #fbfcff; } }
+.what { color: #343a4a; font-size: clamp(9px, 2.6vw, 12px); letter-spacing: .1em; }
 .names {
   color: #ffffff;
   font-size: clamp(14px, 4.2vw, 21px);
-  text-shadow: 2px 0 0 #26408f, -2px 0 0 #26408f, 0 2px 0 #26408f, 0 -2px 0 #26408f, 3px 3px 0 #26408f;
+  text-shadow: 2px 0 0 #343a4a, -2px 0 0 #343a4a, 0 2px 0 #343a4a, 0 -2px 0 #343a4a, 3px 3px 0 #343a4a;
 }
 .when { color: var(--gold); font-size: clamp(14px, 4.4vw, 22px); text-shadow: 3px 3px 0 var(--shadow); }
 .extra { color: var(--mint); font-size: clamp(10px, 3vw, 13px); letter-spacing: .1em; text-shadow: 2px 2px 0 var(--shadow); }
@@ -397,7 +397,7 @@ canvas:focus-visible { outline: 3px solid var(--gold); outline-offset: 6px; }
   const scr = document.createElement("canvas");
   scr.width = SW; scr.height = SH;
   const s = scr.getContext("2d");
-  const SKY = ["#1d2a6b", "#2b3a8a", "#3f4ea3", "#5a64b8", "#7a7cc8", "#9b97d6", "#bdb3e3", "#d9cff0"];
+  const SKY = ["#2a2766", "#4a357f", "#7a4589", "#b0567c", "#dc6c68", "#f08a58", "#f7a95a", "#fcc879"];
   const BAYER = [[0.125, 0.625], [0.875, 0.375]];
   for (let y = 0; y < 47; y++) {
     const t = y / 46 * (SKY.length - 1), i = Math.floor(t), f = t - i;
@@ -583,14 +583,18 @@ canvas:focus-visible { outline: 3px solid var(--gold); outline-offset: 6px; }
   // Size the cabinet so the whole invitation fits on one screen without scrolling
   const mainEl = document.querySelector("main");
   function fit() {
+    // Pinch-zoom changes the visual viewport; never resize the cabinet while zoomed in
+    if (window.visualViewport && window.visualViewport.scale > 1.01) return;
     const dpr = window.devicePixelRatio || 1;
+    const vw = document.documentElement.clientWidth || window.innerWidth;
+    const vh = document.documentElement.clientHeight || window.innerHeight;
     const CH = H + TOP;
     const px = v => parseFloat(v) || 0;
     const ms = getComputedStyle(mainEl), rs = getComputedStyle(document.documentElement);
     const other = px(ms.paddingTop) + px(ms.paddingBottom) + px(ms.rowGap) + info.offsetHeight
       + px(rs.paddingTop) + px(rs.paddingBottom) + 4;
-    const availW = Math.min(window.innerWidth - 32, 620);
-    const availH = window.innerHeight - other;
+    const availW = Math.min(vw - 32, 620);
+    const availH = vh - other;
     let sc = Math.min(availW / W, availH / CH, 4.5);
     sc = Math.max(1, Math.floor(sc * dpr)) / dpr;
     cv.style.width = W * sc + "px";
@@ -598,7 +602,6 @@ canvas:focus-visible { outline: 3px solid var(--gold); outline-offset: 6px; }
   }
   fit();
   window.addEventListener("resize", fit);
-  if (window.visualViewport) window.visualViewport.addEventListener("resize", fit);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
 
   // ---- Chasing bulbs around the name sign ----
@@ -629,8 +632,8 @@ canvas:focus-visible { outline: 3px solid var(--gold); outline-offset: 6px; }
   const tile = document.createElement("canvas");
   tile.width = tile.height = 40;
   const tc = tile.getContext("2d");
-  R(tc, 0, 0, 40, 40, "#111a48");
-  const NEON = ["#8cc7a6", "#7a8fd6", "#f4f2ff", "#5f9a7e"];
+  R(tc, 0, 0, 40, 40, "#0b1126");
+  const NEON = ["#9fd4ff", "#a9c6ff", "#f3f7ff", "#f7a8d8"];
   tc.globalAlpha = .3;
   for (let i = 0; i < 16; i++) {
     const col = NEON[i % 4], x = 2 + Math.floor(rnd() * 36), y = 2 + Math.floor(rnd() * 36);
@@ -639,7 +642,7 @@ canvas:focus-visible { outline: 3px solid var(--gold); outline-offset: 6px; }
     else R(tc, x, y, 2, 2, col);
   }
   document.body.style.backgroundImage =
-    "radial-gradient(ellipse at 50% 38%, rgba(122,140,210,.22), rgba(17,26,72,.55) 55%, rgba(17,26,72,.85)), url(" + tile.toDataURL() + ")";
+    "radial-gradient(ellipse at 50% 38%, rgba(159,180,224,.2), rgba(11,17,38,.55) 55%, rgba(11,17,38,.88)), url(" + tile.toDataURL() + ")";
 })();
 </script>
 
